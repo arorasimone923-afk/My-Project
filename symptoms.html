@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="text-center mb-4">Select Your Symptoms</h2>
+
+<input type="text" id="search" class="form-control mb-3" placeholder="Search symptoms...">
+
+<form method="post">
+    <div class="row" id="symptomList">
+        {% for symptom in all_symptoms %}
+        <div class="col-md-4 mb-2 symptom-item">
+            <label class="form-check">
+                <input type="checkbox" class="form-check-input" name="symptoms" value="{{ symptom }}">
+                {{ symptom }}
+            </label>
+        </div>
+        {% endfor %}
+    </div>
+    <button class="btn btn-primary mt-3">Predict</button>
+</form>
+
+<script>
+document.getElementById('search').addEventListener('keyup', function() {
+    let value = this.value.toLowerCase();
+    document.querySelectorAll('.symptom-item').forEach(function(item) {
+        item.style.display = item.textContent.toLowerCase().includes(value) ? '' : 'none';
+    });
+});
+</script>
+{% endblock %}

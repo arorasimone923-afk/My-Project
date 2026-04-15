@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Prediction Results</h2>
+
+    <div class="card shadow p-4">
+        <table class="table table-bordered text-center">
+            <thead class="table-primary">
+                <tr>
+                    <th>Disease</th>
+                    <th>Confidence (%)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for disease, prob in predictions %}
+                <tr>
+                    <td>{{ disease }}</td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar bg-success"
+                                 role="progressbar"
+                                 aria-valuenow="{{ prob }}"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100"
+                                 style="width: {{ '%.2f'|format(prob) }}%;">
+                                {{ '%.2f'|format(prob) }}%
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="alert alert-warning mt-3 text-center">
+            ⚠️ This is not a medical diagnosis. Please consult a doctor.
+        </div>
+
+        <div class="text-center">
+            <a href="{{ url_for('home') }}" class="btn btn-primary mt-3">
+                Go Home
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

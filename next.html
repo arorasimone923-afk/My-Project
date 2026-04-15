@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+    <div class="card shadow-lg p-5 text-center" style="max-width: 500px;">
+        <h2 class="mb-3">Hello, {{ name }}! 👋</h2>
+        <p class="lead">Your details have been recorded successfully.</p>
+        <a href="{{ url_for('symptoms') }}" class="btn btn-primary btn-lg mt-3">
+            Continue to Symptoms
+        </a>
+    </div>
+</div>
+{% endblock %}
